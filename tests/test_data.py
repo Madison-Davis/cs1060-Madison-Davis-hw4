@@ -3,11 +3,11 @@ import sqlite3
 import os
 
 # Paths relative to this test file
-API_DIR = os.path.join(os.path.dirname(__file__), "..", "api")
-DB_PATH = os.path.join(API_DIR, "data.db")
-ZIP_CSV = os.path.join(API_DIR, "zip_county.csv")
-HEALTH_CSV = os.path.join(API_DIR, "county_health_rankings.csv")
-CSV_TO_SQLITE = os.path.join(API_DIR, "csv_to_sqlite.py")
+ROOT_DIR = os.path.join(os.path.dirname(__file__), "..")
+DB_PATH = os.path.join(ROOT_DIR, "data.db")
+ZIP_CSV = os.path.join(ROOT_DIR, "zip_county.csv")
+HEALTH_CSV = os.path.join(ROOT_DIR, "county_health_rankings.csv")
+CSV_TO_SQLITE = os.path.join(ROOT_DIR, "csv_to_sqlite.py")
 
 # 1. Remove the old database if it exists
 if os.path.exists(DB_PATH):
