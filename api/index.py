@@ -1,5 +1,5 @@
 from werkzeug.middleware.proxy_fix import ProxyFix
-from flask import Flask, request, jsonify
+from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS
 import sqlite3
 import os
@@ -88,32 +88,32 @@ def county_data():
 
     # Error-handling: did not supply either zip or measure name
     if not zip_code or not measure_name:
-        return jsonify({"error": "Both 'zip' and 'measure_name' are required."}), 400
+        return make_response(jsonify({"error": "Both 'zip' and 'measure_name' are required."}), 400)
     
     # Error: supplied a non-existent measure_name
     if measure_name not in ALLOWED_MEASURES:
-        return jsonify({"error": f"Measure name not found. Must be one of {', '.join(ALLOWED_MEASURES)}"}), 404
+        return make_response(jsonify({"error": f"Measure name not found. Must be one of {', '.join(ALLOWED_MEASURES)}"}), 404)
 
     # Error-handling: supplied a non-existent ZIP (does not have 5 digits) 
     if not zip_code.isdigit() or len(zip_code) != 5:
-        return jsonify({"error": "ZIP code not found. ZIP must be a 5-digit number."}), 404
+        return make_response(jsonify({"error": "ZIP code not found. ZIP must be a 5-digit number."}), 404)
 
     # Error-handling: supplied a non-existent ZIP (no associated data)
     county_name, state_abbr = get_county_state_from_zip(zip_code)
     if not county_name:
-        return jsonify({"error": f"ZIP code not found.  No county found for ZIP {zip_code}."}), 404
+        return make_response(jsonify({"error": f"ZIP code not found.  No county found for ZIP {zip_code}."}), 404)
 
     # Error-handling: supplied a non-existent ZIP and measure-pair (no associated data)
     result = get_health_measures(county_name, state_abbr, measure_name)
     if not result:
-        return jsonify({"error": f"No data found for ZIP {zip_code} and measure '{measure_name}'."}), 404
+        return make_response(jsonify({"error": f"No data found for ZIP {zip_code} and measure '{measure_name}'."}), 404)
 
     return jsonify(result)
 
 @app.errorhandler(404)
 def page_not_found(e):
     """ If an endpoint other than county_data is requested, return a 404 error. """
-    return jsonify({"error": "Endpoint not allowed: must use county_data endpoint"}), 404
+    return make_response(jsonify({"error": "Endpoint not allowed: must use county_data endpoint"}), 404)
 
 # app.run(debug=True) # only for local development, disable for Vercel
 

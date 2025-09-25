@@ -11,4 +11,4 @@ curl -X POST https://cs1060-madison-davis-hw4.vercel.app/county_data \
 
 curl -X POST https://cs1060-madison-davis-hw4.vercel.app/county_data \
      -H "Content-Type: application/json" \
-     -d '{"zip": “99999”, "measure_name": "Adult obesity"}'
+     -d '{"zip": "99999", "measure_name": "Adult obesity"}'
