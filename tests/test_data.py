@@ -2,6 +2,8 @@ import subprocess
 import sqlite3
 import os
 
+# Code obtained from ChatGPT site, personal login
+
 # Paths relative to this test file
 ROOT_DIR = os.path.join(os.path.dirname(__file__), "..")
 DB_PATH = os.path.join(ROOT_DIR, "data.db")

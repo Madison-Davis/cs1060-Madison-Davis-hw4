@@ -4,6 +4,8 @@ from flask_cors import CORS
 import sqlite3
 import os
 
+# Code obtained from ChatGPT site, personal login
+
 app = Flask(__name__)
 CORS(app)
 app.wsgi_app = ProxyFix(app.wsgi_app)

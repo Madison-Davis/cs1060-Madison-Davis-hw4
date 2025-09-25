@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Code obtained from ChatGPT site, personal login
+
 import sys
 import csv
 import sqlite3
