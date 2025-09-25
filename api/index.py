@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 app.wsgi_app = ProxyFix(app.wsgi_app)
-DB_PATH = os.path.join(os.path.dirname(__file__), 'data.db')
+DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data.db')
 
 ALLOWED_MEASURES = {
     "Violent crime rate",
