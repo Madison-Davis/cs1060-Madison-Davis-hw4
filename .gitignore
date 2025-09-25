@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+cs1060venv/
+venv/
+env/
+
+# IDE files
+*.idea/
+*.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS files we don't need
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Python packaging
+*.egg
+*.egg-info/
+dist/
+build/

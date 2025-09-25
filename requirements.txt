@@ -1,0 +1,5 @@
+Flask==2.3.6
+requests==2.32.3
+num2words==0.5.12
+text2digits==0.7.3
+flask-cors==3.1.0
