@@ -3,4 +3,12 @@ Welcome to HW4!  Here are some notes for graders:
 1. "Behavior on bad CSV is undefined" means the script is not required to gracefully handle erroneous or malformed CSV files.  Based on the prompt, my model (GPT-4.1 Harvard Sandbox) chose to not do anything, which is within the specification.
 2. How we handle SQL injection: We use ? placeholders and the tuple of values (zip_code,) or (county_name, state_abbr, measure_name) which tells SQLite to treat the input as data, not SQL code.  So it won't execute those values. This automatically prevents SQL injection because the user cannot inject SQL commands through zip_code, county_name, or measure_name.
 3. How we handle the queries: We implement the query as two separate queries.  First, we query the zip_county table to get the county and state, then with that we query the county_health_rankings table to get the data.
-4. How to run the tests: these tests all pass locally, but if you wish to test yourself, here is how you would do it.  First, download the repo locally, then install the requirements.  Next, go into index.py and uncomment out the app.run() line at the very end.  Opening two terminals, navigate each to the root directory of the repo.  In the first terminal, start up the API platform locally by running python3 app/index.py.  In the second terminal, type either python3 tests/test_api.py or python3 tests/test_data.py, depending on whether you want to test csv_to_sqlite.py or index.py.
+4. How to run tests locally: these tests all pass locally, but if you wish to test yourself, here is how you would do it.  First, download the repo locally, then install the requirements.  Next, go into index.py and uncomment out the app.run() line at the very end.  Opening two terminals, navigate each to the root directory of the repo.  In the first terminal, start up the API platform locally by running python3 app/index.py.  In the second terminal, type either python3 tests/test_api.py or python3 tests/test_data.py, depending on whether you want to test csv_to_sqlite.py or index.py.
+5. Example tests for the Vercel deployed app: open up a terminal and type some curl commands, like such:
+curl -X POST https://cs1060-madison-davis-hw4-ku6j.vercel.app/county_data \
+     -H "Content-Type: application/json" \
+     -d '{"zip": "02139", "measure_name": "Adult obesity"}'
+
+curl -X POST https://cs1060-madison-davis-hw4-ku6j.vercel.app/county_data \
+     -H "Content-Type: application/json" \
+     -d '{"zip": “99999”, "measure_name": "Adult obesity"}'
