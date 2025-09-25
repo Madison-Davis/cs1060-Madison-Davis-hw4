@@ -113,5 +113,5 @@ def page_not_found(e):
     """ If an endpoint other than county_data is requested, return a 404 error. """
     return jsonify({"error": "Endpoint not allowed: must use county_data endpoint"}), 404
 
-app.run(debug=True)
+# app.run(debug=True) # only for local development, disable for Vercel
 
